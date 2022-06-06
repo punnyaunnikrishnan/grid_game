@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!-- to understand the doc type as HTML -->
+<html lang="en">
+    <!-- providing language as english -->
+<head>
+    <link rel="stylesheet" href="release7.css">                                                       
+  <!-- linked css with html using external styling                                                             -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Picture Puzzle</title>                                                                             
+    <style>
+     #puzzle{width: 600px;margin: auto;}       
+     /* provided styles to id  using internal styling                                   */
+        .grid{
+        background-image: url("../images/img.jpg");
+        /* to give as bacground inorder to place the grids */
+        width: 200px;
+        height:200px;
+        float: left;
+        border: 1px solid silver;
+        box-sizing: border-box;
+        }
+        #grid1{ background-position: 0px 0px;}                                                               
+        #grid2{ background-position: -200px 0px;}
+        #grid3{ background-position: -400px -0px;}
+        #grid4{ background-position: -0px -200px;}
+        #grid5{ background-position: -200px -200px;}
+        #grid6{ background-position: -400px -200px;}
+        #grid7{ background-position: -0px -400px;}
+        #grid8{ background-position: -200px -400px;}
+        #grid9{ background-position: -400px -400px;}
+        /* divided into 9 divs inorder to position the picture puzzle grids */
+   </style>
+</head>
+<body>
+    <h1 style="text-align:center" >PICTURE PUZZLE</h1><br>
+    <img src="../images/img.jpg" alt="tom&jerry" id="puzzlesolver">
+    <h1 style="position:absolute;top:0px;right:0px;padding:10px;" id="timer"></h1>
+    <p><b>Position the grids in proper order inorder to solve the puzzle.Keep in mind that you finish it up at the earliest inorder to become the fastest to finish..!!</b></p>
+    <div id="puzzle" class="sortable">
+        <div id="grid1" class="grid"> </div>
+        <div id="grid2" class="grid"> </div>
+        <div id="grid3" class="grid"> </div>
+        <div id="grid4" class="grid"> </div>
+        <div id="grid5" class="grid"> </div>
+        <div id="grid6" class="grid"> </div>
+        <div id="grid7" class="grid"> </div>
+        <div id="grid8" class="grid"> </div>
+        <div id="grid9" class="grid"> </div>
+        <!-- divided the image into 9 grids -->
+    </div>
+
+    <div style="text-align: left;">
+        <button id='startBtn' style='display: inline;' onclick="shuffle()">Start</button>
+        <!-- given a start button to start the game -->
+    </div>
+    <div id="message"> 
+        <!-- given a message at the end,after winning .using this id -->
+    </div>
+         
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- to add jquery  -->
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+        <!-- to add jquery UI ie,to drag,drop,sortable,resize etc -->
+        <script>
+            var sec=0;
+            let timer;
+            function shuffle() {
+                // shuffle fn is used to shuffle the grids inside the picture puzzle
+			
+            let array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            // for storing different pieces of image into a single array
+            array.sort(function(a, b){return 0.5 - Math.random()});
+            // array.sort will sort the array in random order
+            $('#puzzle').html('');
+            for (var i = 0; i < array.length; i++) {
+                // to iterate through the picture puzzle grids
+                $( "#puzzle" ).append("<div id='grid"+array[i]+"' class='grid'></div>");
+            }
+
+            sec=0;
+            timer=setInterval(function(){
+                // to give timer
+                sec=sec+1;
+                $("#timer").html(sec);
+            },1000);
+        }
+
+        $( ".sortable" ).sortable({connectWith: ".sortable"},
+        // jquery been used inorder to sort the image grids to actual position
+        {
+            update: function( event, ui ) {
+                countRight=0;
+                $("#puzzle > div").each((index, elem) => {
+                if('grid'+(index+1)==elem.id){
+                    countRight=countRight+1;
+                }
+                if(countRight==9){
+                    let solvedin=sec;
+                    sec=0;
+                    clearInterval(timer);
+                    $("#timer").html(sec);
+                    $("#message").html("Congratulations...!You have won the puzzle in "+solvedin+" seconds!");
+                    // used jquery to print a message at the end,after winning.
+                }        
+            });
+            }
+        });
+        </script>
+</body>
+</html>
