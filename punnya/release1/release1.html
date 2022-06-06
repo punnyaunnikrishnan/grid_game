@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="release1.css">                                                                   
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Picture Puzzle</title>                                                                             
+    <style>
+     #puzzle{width: 600px;margin: auto;}                                             
+        .grid{
+        background-image: url("../images/img.jpg");
+        width: 200px;
+        height:200px;
+        float: left;
+        border: 1px solid silver;
+        box-sizing: border-box;
+        }
+        #grid1{ background-position: 0px 0px;}                                                               
+        #grid2{ background-position: -200px 0px;}
+        #grid3{ background-position: -400px -0px;}
+        #grid4{ background-position: -0px -200px;}
+        #grid5{ background-position: -200px -200px;}
+        #grid6{ background-position: -400px -200px;}
+        #grid7{ background-position: -0px -400px;}
+        #grid8{ background-position: -200px -400px;}
+        #grid9{ background-position: -400px -400px;}
+   </style>
+</head>
+<body>
+    <h1 style="text-align:center" >PICTURE PUZZLE</h1><br>
+    <img src="../images/img.jpg" alt="tom&jerry" id="puzzlesolver">
+    <p><b>Position the grids in proper order inorder to solve the puzzle.Keep in mind that you finish it up at the earliest inorder to become the fastest to finish..!!</b></p>
+    <div>
+    <div id="puzzle" class="sortable">
+        <div id="grid1" class="grid"> </div>
+        <div id="grid2" class="grid"> </div>
+        <div id="grid3" class="grid"> </div>
+        <div id="grid4" class="grid"> </div>
+        <div id="grid5" class="grid"> </div>
+        <div id="grid6" class="grid"> </div>
+        <div id="grid7" class="grid"> </div>
+        <div id="grid8" class="grid"> </div>
+        <div id="grid9" class="grid"> </div>
+    </div>
+    </div>
+
+    <div style="text-align: left;">
+        <button id='startBtn' style='display: inline;' onclick="shuffle()">Start</button>
+    </div>
+</body>
+</html>
